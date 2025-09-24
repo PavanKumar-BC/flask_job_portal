@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Available Jobs</h2>
+{% for job in jobs %}
+    <div>
+        <h3>{{ job.title }}</h3>
+        <p><strong>Company:</strong> {{ job.company }}</p>
+        <p><strong>Location:</strong> {{ job.location }}</p>
+        <p><strong>Salary:</strong> {{ job.salary }}</p>
+        <p><strong>Description:</strong> {{ job.description }}</p>
+        <a href="{{ url_for('apply_job', job_id=job.id) }}"><button>Apply</button></a>
+    </div>
+{% else %}
+    <p>No jobs available yet.</p>
+{% endfor %}
+{% endblock %}

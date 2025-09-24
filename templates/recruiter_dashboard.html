@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Your Posted Jobs</h2>
+
+<a href="{{ url_for('post_job') }}"><button style="margin-bottom: 20px;">Post New Job</button></a>
+
+{% if jobs %}
+    {% for job in jobs %}
+        <div class="job-card">
+            <h3>{{ job.title }}</h3>
+            <p><strong>Company:</strong> {{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+            <p><strong>Salary:</strong> {{ job.salary }}</p>
+            <p><strong>Description:</strong> {{ job.description }}</p>
+            <a href="{{ url_for('view_applicants', job_id=job.id) }}">
+                <button>View Applicants</button>
+            </a>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>You have not posted any jobs yet.</p>
+{% endif %}
+
+{% endblock %}

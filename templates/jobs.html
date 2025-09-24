@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width:600px; margin:20px auto;">
+    <h2>Available Jobs</h2>
+    {% for job in jobs %}
+        <div style="padding:15px; margin:10px 0; background:white; border-radius:8px; box-shadow:0 0 5px rgba(0,0,0,0.1);">
+            <h3>{{ job.title }}</h3>
+            <p><strong>Company:</strong> {{ job.company }}</p>
+            <p><strong>Location:</strong> {{ job.location }}</p>
+            <p><strong>Description:</strong> {{ job.description }}</p>
+
+            {% if session.get('user_id') %}
+                <a href="{{ url_for('apply_job', job_id=job.id) }}">
+                    <button style="padding:5px 10px; background:#4CAF50; color:white; border:none; cursor:pointer; border-radius:4px;">
+                        Apply
+                    </button>
+                </a>
+            {% endif %}
+        </div>
+    {% else %}
+        <p>No jobs available yet.</p>
+    {% endfor %}
+</div>
+{% endblock %}

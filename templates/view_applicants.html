@@ -1,0 +1,14 @@
+<h2>Applicants for {{ job.title }}</h2>
+
+{% if applications %}
+    <ul>
+    {% for app in applications %}
+        <li>
+            {{ app.candidate.username }} ({{ app.email }})<br>
+            Cover Letter: {{ app.cover_letter }}
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No applicants yet.</p>
+{% endif %}
